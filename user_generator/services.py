@@ -1,13 +1,21 @@
+from typing import NamedTuple, Iterator
+
 from faker import Faker
 
 fake = Faker()
 
 
-def generate_user() -> str:
-    user = fake.first_name(), fake.unique.ascii_email()
-    return ' '.join(user)
+class User(NamedTuple):
+    name: str
+    email: str
 
 
-def generator_of_users(users: int) -> str:
-    for user_number in range(users):
-        yield f"{user_number + 1}. {generate_user()}"
+def generate_user() -> User:
+    user_name = fake.first_name()
+    user_email = fake.unique.ascii_email()
+    return User(name=user_name, email=user_email)
+
+
+def generator_of_users(users: int) -> Iterator[User]:
+    for _ in range(users):
+        yield generate_user()
