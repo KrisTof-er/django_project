@@ -33,7 +33,6 @@ init-configs-i-dev:
 d-homework-i-run:
 	@make init-configs-i-dev && \
 	make d-run && \
-	make migrate
 
 .PHONY: d-homework-i-purge
 d-homework-i-purge:
