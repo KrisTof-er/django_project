@@ -1,0 +1,42 @@
+{% extends '_base.html' %}
+
+{% block content %}
+    <ul class="list-group list-group-horizontal">
+        <li class="list-group-item">
+            Contact Name:
+        </li>
+        <li class="list-group-item">
+            {{ contact.contact_name }}
+        </li>
+    </ul>
+    <ul class="list-group list-group-horizontal">
+        <li class="list-group-item">
+            Phone Value:
+        </li>
+        <li class="list-group-item">
+            {{ contact.phone_value }}
+        </li>
+    </ul>
+    <ul class="list-group list-group-horizontal">
+        <li class="list-group-item">
+            Created at:
+        </li>
+        <li class="list-group-item">
+            {{ contact.created_at }}
+        </li>
+    </ul>
+    <ul class="list-group list-group-horizontal">
+        <li class="list-group-item">
+            Modified at:
+        </li>
+        <li class="list-group-item">
+            {{ contact.modified_at }}
+        </li>
+    </ul>
+
+    <a href="{% url 'contacts:show_contacts' %}">
+        <button class="btn btn-info">
+            Show All Contacts
+        </button>
+    </a>
+{% endblock %}

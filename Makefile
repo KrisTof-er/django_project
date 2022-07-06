@@ -32,7 +32,8 @@ init-configs-i-dev:
 .PHONY: d-homework-i-run
 d-homework-i-run:
 	@make init-configs-i-dev && \
-	make d-run && \
+	python3 manage.py runserver && \
+	make d-run
 
 .PHONY: d-homework-i-purge
 d-homework-i-purge:

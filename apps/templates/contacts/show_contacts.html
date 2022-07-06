@@ -1,0 +1,41 @@
+{% extends '_base.html' %}
+
+{% block content %}
+    <a href="{% url 'contacts:create_contact' %}">
+        <button class="btn btn-info" style="margin-left: 2rem">Contact Creation</button>
+    </a>
+
+    <ol class="list-group list-group-numbered">
+        {% for contact in contacts %}
+            <li class="list-group-item" style="background: azure">
+                <span style="display: inline-block">{{ contact.contact_name }} ({{ contact.phone_value }})</span>
+                <div class="btn-group" role="group">
+                    <a href="{% url 'contacts:show_contact_info' pk=contact.pk %}" class="btn btn-outline-info">
+                        Show Info
+                    </a>
+                    <a href="{% url 'contacts:update_contact' pk=contact.pk %}" class="btn btn-outline-primary">
+                        Update Contact
+                    </a>
+                    <a href="{% url 'contacts:delete_contact' pk=contact.pk %}" class="btn btn-outline-danger">
+                        Delete Contact
+                    </a>
+                </div>
+                {#                <a href="{% url 'contacts:show_contact_info' pk=contact.pk %}">#}
+                {#                    <button class="btn btn-info" style="margin: .1rem">#}
+                {#                        Show Info#}
+                {#                    </button>#}
+                {#                </a>#}
+                {#                <a href="{% url 'contacts:update_contact' pk=contact.pk %}">#}
+                {#                    <button class="btn btn-primary" style="margin: .1rem">#}
+                {#                        Update Contact#}
+                {#                    </button>#}
+                {#                </a>#}
+                {#                <a href="{% url 'contacts:delete_contact' pk=contact.pk %}">#}
+                {#                    <button class="btn btn-danger" style="margin: .1rem">#}
+                {#                        Delete Contact#}
+                {#                    </button>#}
+                {#                </a>#}
+            </li>
+        {% endfor %}
+    </ol>
+{% endblock %}
