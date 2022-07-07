@@ -8,6 +8,10 @@ d-run-i-extended:
 	COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose up --build --detach && \
 	make d-logs-follow
 
+.PHONY: d-logs-follow
+d-logs-follow:
+	@docker-compose logs --follow
+
 .PHONY: d-stop
 d-stop:
 	@COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose down
@@ -32,7 +36,6 @@ init-configs-i-dev:
 .PHONY: d-homework-i-run
 d-homework-i-run:
 	@make init-configs-i-dev && \
-	python3 manage.py runserver && \
 	make d-run
 
 .PHONY: d-homework-i-purge
