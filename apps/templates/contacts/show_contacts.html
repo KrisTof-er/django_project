@@ -8,7 +8,7 @@
     <ol class="list-group list-group-numbered">
         {% for contact in contacts %}
             <li class="list-group-item" style="background: azure">
-                <span style="display: inline-block">{{ contact.contact_name }} ({{ contact.phone_value }})</span>
+                <span style="display: inline-block">{{ contact.contact_name }}</span>
                 <div class="btn-group" role="group">
                     <a href="{% url 'contacts:show_contact_info' pk=contact.pk %}" class="btn btn-outline-info">
                         Show Info

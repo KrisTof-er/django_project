@@ -36,6 +36,7 @@ init-configs-i-dev:
 .PHONY: d-homework-i-run
 d-homework-i-run:
 	@make init-configs-i-dev && \
+	DJANGO_SUPERUSER_PASSWORD=admin123 python manage.py createsuperuser --user admin --email admin@gmail.com --no-input && \
 	make d-run
 
 .PHONY: d-homework-i-purge

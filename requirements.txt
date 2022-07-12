@@ -1,5 +1,6 @@
 django==4.0.6
 django-phonenumber-field[phonenumbers]==6.3.0
 django-phonenumbers==1.0.1
+django-multiselectfield==0.1.12
 
-faker==13.14.0
+faker==13.15.0
