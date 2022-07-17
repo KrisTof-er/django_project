@@ -1,36 +1,18 @@
-# Register your models here.
 from django.contrib import admin
 
-from .models import Contact, EmailAddress, TelegramNickname, LinkedinURL
+from .models import Contact, ContactTag, ContactData
 
 
-# admin.site.register(Contact)
-# admin.site.register(EmailAddress)
-# admin.site.register(TelegramNickname)
-# admin.site.register(LinkedinURL)
-# admin.site.register(TagsChoices)
+class ContactDataInlineAdmin(admin.TabularInline):
+    model = ContactData
 
 
 class ContactInlineAdmin(admin.TabularInline):
     model = Contact
 
 
-@admin.register(EmailAddress)
-class EmailAddressAdmin(admin.ModelAdmin):
-    inlines = (
-        ContactInlineAdmin,
-    )
-
-
-@admin.register(TelegramNickname)
-class TelegramNicknameAdmin(admin.ModelAdmin):
-    inlines = (
-        ContactInlineAdmin,
-    )
-
-
-@admin.register(LinkedinURL)
-class LinkedinURLAdmin(admin.ModelAdmin):
+@admin.register(ContactTag)
+class ContactTagAdmin(admin.ModelAdmin):
     inlines = (
         ContactInlineAdmin,
     )
@@ -38,4 +20,11 @@ class LinkedinURLAdmin(admin.ModelAdmin):
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
+    inlines = (
+        ContactDataInlineAdmin,
+    )
+
+
+@admin.register(ContactData)
+class ContactDataAdmin(admin.ModelAdmin):
     ...

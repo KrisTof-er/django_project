@@ -1,49 +1,57 @@
-from django.core.validators import URLValidator
+import re
+
+from django import forms
 from django.db import models
-from multiselectfield import MultiSelectField
-from phonenumber_field.modelfields import PhoneNumberField
 
 
-# class PhoneNumber(models.Model):
-#     phone = PhoneNumberField(
-#         "Phone number", help_text="Phone number of contact",
-#         unique=True, max_length=13
-#     )
-#
-#     def __str__(self):
-#         return f'{self.phone}'
-#
-#     __repr__ = __str__
+class ContactData(models.Model):
+    contact = models.ForeignKey(
+        'Contact',
+        on_delete=models.CASCADE,
+        default=None,
+    )
 
+    ContactChoices = (
+        ("PHONE_NUMBER", "Phone Number"),
+        ("EMAIL_ADDRESS", "Email Address"),
+        ("TELEGRAM_NICKNAME", "Telegram Nickname"),
+        ("LINKEDIN_ID", "LinkedIn ID")
+    )
 
-class EmailAddress(models.Model):
-    email = models.EmailField('Email', max_length=50)
+    contact_type = models.CharField(
+        'Contact type',
+        max_length=30,
+        choices=ContactChoices,
+        default="PHONE_NUMBER",
+    )
+    value = models.CharField(
+        'Value',
+        max_length=100,
+        default="",
+    )
+
+    def clean(self):
+        regex_to_types = {
+            "PHONE_NUMBER": r"(\(?\+)?([\(?0-9-\s)\.])+$",
+            "EMAIL_ADDRESS": r".+@(([a-zA-Z0-9-])+\.)+([a-z])+$",
+            "TELEGRAM_NICKNAME": r"(^(https://)?t\.me/)?[a-zA-Z0-9_]{5,}$",
+            "LINKEDIN_ID": r"^((https://)?(www\.)?linkedin\.com/in/)?([a-zA-Z0-9-])+/?$"
+        }
+        if not re.search(regex_to_types[self.contact_type], self.value):
+            raise forms.ValidationError("Incorrect Value")
+        return self.value
 
     def __str__(self):
-        return f'{self.email}'
+        return self.value
 
     __repr__ = __str__
 
 
-class TelegramNickname(models.Model):
-    telegram = models.SlugField('Telegram', max_length=20)
+class ContactTag(models.Model):
+    tag = models.CharField('Tag', help_text='Name of contact tag', max_length=50)
 
     def __str__(self):
-        return f'{self.telegram}'
-
-    __repr__ = __str__
-
-
-class LinkedinURL(models.Model):
-    linkedin = models.CharField('Linkedin URL', max_length=50, validators=[
-        URLValidator(
-            message='Enter a link starting with "https://www.linkedin.com/in/"',
-            schemes='https://www.linkedin.com/in/'
-        )
-    ])
-
-    def __str__(self):
-        return f'{self.linkedin}'
+        return self.tag
 
     __repr__ = __str__
 
@@ -52,36 +60,23 @@ class Contact(models.Model):
     contact_name = models.CharField("Contact name", help_text="Name of contact", max_length=50)
     birthday = models.DateField('Birthday', help_text='Date of birth', null=True, blank=True)
 
-    TagsChoices = (
-        ("FAMILY", 'Family'),
-        ("JOB", 'Job'),
-        ("FRIENDS", 'Friends'),
-        ("JOURNEY", 'Journey'),
-        ("EVENT", 'Event'),
-        ("UNIVERSITY", 'University')
+    contact_tag = models.ForeignKey(
+        ContactTag,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
     )
 
-    contact_tags = MultiSelectField(
-        'Tags',
-        help_text="Contact Tags",
-        choices=TagsChoices,
-        null=True,
+    contact_tags = models.ManyToManyField(
+        ContactTag,
+        related_name='contact_tags',
         blank=True
     )
-
-    phone_value = PhoneNumberField(
-        "Phone number", help_text="Phone number of contact",
-        max_length=13, unique=True, default='',
-    )
-
-    contact_email = models.ForeignKey(EmailAddress, on_delete=models.SET_NULL, null=True, blank=True)
-    contact_telegram = models.OneToOneField(TelegramNickname, on_delete=models.SET_NULL, null=True, blank=True)
-    contact_linkedin = models.OneToOneField(LinkedinURL, on_delete=models.SET_NULL, null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.contact_name}'
+        return self.contact_name
 
     __repr__ = __str__

@@ -45,8 +45,8 @@ LOCAL_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    'phonenumber_field',
-    'multiselectfield',
+    # 'phonenumber_field',
+    # 'multiselectfield',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS

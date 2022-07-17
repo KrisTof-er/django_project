@@ -3,10 +3,7 @@
 {% block content %}
     <form method="POST">
         {% csrf_token %}
-        {{ contact_form.as_p }}
-        {{ email_form.as_p }}
-        {{ telegram_form.as_p }}
-        {{ linkedin_form.as_p }}
+        {{ form.as_p }}
         <button type="submit" class="btn btn-success">
             {% block label %}
                 Create New Contact
