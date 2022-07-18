@@ -32,12 +32,12 @@ class ContactData(models.Model):
 
     def clean(self):
         regex_to_types = {
-            "PHONE_NUMBER": r"(\(?\+)?([\(?0-9-\s)\.])+$",
+            "PHONE_NUMBER": r"(\(?\+)?(\(?[0-9-\s\.]\)?)+$",
             "EMAIL_ADDRESS": r".+@(([a-zA-Z0-9-])+\.)+([a-z])+$",
             "TELEGRAM_NICKNAME": r"(^(https://)?t\.me/)?[a-zA-Z0-9_]{5,}$",
             "LINKEDIN_ID": r"^((https://)?(www\.)?linkedin\.com/in/)?([a-zA-Z0-9-])+/?$"
         }
-        if not re.search(regex_to_types[self.contact_type], self.value):
+        if not re.fullmatch(regex_to_types[self.contact_type], self.value):
             raise forms.ValidationError("Incorrect Value")
         return self.value
 

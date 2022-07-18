@@ -5,11 +5,11 @@ from . import views
 app_name = 'contacts'
 
 urlpatterns = [
-    path('', views.show_contacts, name="show_contacts"),
-    path('create_contact', views.create_contact, name="create_contact"),
+    path('', views.ContactsShowView.as_view(), name="show_contacts"),
+    path('create_contact', views.ContactCreateView.as_view(), name="create_contact"),
     path('<int:pk>/', include([
-        path('show_contact_info', views.show_contact_info, name="show_contact_info"),
-        path('update_contact', views.update_contact, name="update_contact"),
-        path('delete_contact', views.delete_contact, name="delete_contact"),
+        path('show_contact_info', views.ContactInfoShowView.as_view(), name="show_contact_info"),
+        path('update_contact', views.ContactUpdateView.as_view(), name="update_contact"),
+        path('delete_contact', views.ContactDeleteView.as_view(), name="delete_contact"),
     ])),
 ]

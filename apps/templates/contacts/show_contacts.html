@@ -1,5 +1,9 @@
 {% extends '_base.html' %}
 
+{% block title %}
+    Contacts List
+{% endblock %}
+
 {% block content %}
     <a href="{% url 'contacts:create_contact' %}">
         <button class="btn btn-info" style="margin-left: 2rem">Contact Creation</button>
