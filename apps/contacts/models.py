@@ -60,13 +60,6 @@ class Contact(models.Model):
     contact_name = models.CharField("Contact name", help_text="Name of contact", max_length=50)
     birthday = models.DateField('Birthday', help_text='Date of birth', null=True, blank=True)
 
-    contact_tag = models.ForeignKey(
-        ContactTag,
-        on_delete=models.CASCADE,
-        null=True,
-        blank=True,
-    )
-
     contact_tags = models.ManyToManyField(
         ContactTag,
         related_name='contact_tags',

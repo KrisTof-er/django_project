@@ -8,7 +8,7 @@ class ContactDataInlineAdmin(admin.TabularInline):
 
 
 class ContactInlineAdmin(admin.TabularInline):
-    model = Contact
+    model = Contact.contact_tags.through
 
 
 @admin.register(ContactTag)
