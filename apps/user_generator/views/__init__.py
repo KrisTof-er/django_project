@@ -1,1 +1,1 @@
-from .user_generator import user_generator
+from .user_generator import UserGeneratorView
