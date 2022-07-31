@@ -34,7 +34,8 @@ migrations:
 
 .PHONY: init-configs-i-dev
 init-configs-i-dev:
-	@cp docker-compose.override.dev.yml docker-compose.override.yml
+	@cp docker-compose.override.dev.yml docker-compose.override.yml && \
+	cp .env.dev .env
 
 
 .PHONY: d-homework-i-run
