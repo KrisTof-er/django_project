@@ -32,10 +32,28 @@ migrate:
 migrations:
 	@python manage.py makemigrations
 
+.PHONY: init-dev-i-create-superuser
+init-dev-i-create-superuser:
+	@DJANGO_SUPERUSER_PASSWORD=admin123 python manage.py createsuperuser --user admin --email admin@gmail.com --no-input
+
+.PHONY: until-i-kill-by-port
+until-i-kill-by-port:
+	@sudo lsof -i:8000 -Fp | head -n 1 | sed 's/^p//' | xargs sudo kill
+
 .PHONY: init-configs-i-dev
 init-configs-i-dev:
 	@cp docker-compose.override.dev.yml docker-compose.override.yml && \
 	cp .env.dev .env
+
+.PHONY: init-dev
+init-dev:
+	@pip install --upgrade pip && \
+	pip install --requirement requirements.txt && \
+	pre-commit install
+
+.PHONY: pre-commit-run-all
+pre-commit-run-all:
+	@pre-commit run --all-files
 
 
 .PHONY: d-homework-i-run

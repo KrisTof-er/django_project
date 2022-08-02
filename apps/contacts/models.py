@@ -6,7 +6,7 @@ from django.db import models
 
 class ContactData(models.Model):
     contact = models.ForeignKey(
-        'Contact',
+        "Contact",
         on_delete=models.CASCADE,
         default=None,
     )
@@ -15,17 +15,17 @@ class ContactData(models.Model):
         ("PHONE_NUMBER", "Phone Number"),
         ("EMAIL_ADDRESS", "Email Address"),
         ("TELEGRAM_NICKNAME", "Telegram Nickname"),
-        ("LINKEDIN_ID", "LinkedIn ID")
+        ("LINKEDIN_ID", "LinkedIn ID"),
     )
 
     contact_type = models.CharField(
-        'Contact type',
+        "Contact type",
         max_length=30,
         choices=ContactChoices,
         default="PHONE_NUMBER",
     )
     value = models.CharField(
-        'Value',
+        "Value",
         max_length=100,
         default="",
     )
@@ -35,7 +35,7 @@ class ContactData(models.Model):
             "PHONE_NUMBER": r"(\(?\+)?(\(?[0-9-\s\.]\)?)+$",
             "EMAIL_ADDRESS": r".+@(([a-zA-Z0-9-])+\.)+([a-z])+$",
             "TELEGRAM_NICKNAME": r"(^(https://)?t\.me/)?[a-zA-Z0-9_]{5,}$",
-            "LINKEDIN_ID": r"^((https://)?(www\.)?linkedin\.com/in/)?([a-zA-Z0-9-])+/?$"
+            "LINKEDIN_ID": r"^((https://)?(www\.)?linkedin\.com/in/)?([a-zA-Z0-9-])+/?$",
         }
         if not re.fullmatch(regex_to_types[self.contact_type], self.value):
             raise forms.ValidationError("Incorrect Value")
@@ -48,7 +48,7 @@ class ContactData(models.Model):
 
 
 class ContactTag(models.Model):
-    tag = models.CharField('Tag', help_text='Name of contact tag', max_length=50)
+    tag = models.CharField("Tag", help_text="Name of contact tag", max_length=50)
 
     def __str__(self):
         return self.tag
@@ -58,13 +58,9 @@ class ContactTag(models.Model):
 
 class Contact(models.Model):
     contact_name = models.CharField("Contact name", help_text="Name of contact", max_length=50)
-    birthday = models.DateField('Birthday', help_text='Date of birth', null=True, blank=True)
+    birthday = models.DateField("Birthday", help_text="Date of birth", null=True, blank=True)
 
-    contact_tags = models.ManyToManyField(
-        ContactTag,
-        related_name='contact_tags',
-        blank=True
-    )
+    contact_tags = models.ManyToManyField(ContactTag, related_name="contact_tags", blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
