@@ -15,4 +15,17 @@
             </li>
         </ul>
     </div>
+
+    <div class="d-flex justify-content-center align-items-center">
+        {% if user.is_authenticated %}
+            <div>Hi {{ user.username }}!</div>
+            <div><a href="{% url 'logout' %}">Log Out</a></div>
+        {% else %}
+            <div>
+                <a href="{% url 'login' %}">Log In</a>
+                <span> or </span>
+                <a href="{% url 'users:signup' %}">Sign Up</a>
+            </div>
+        {% endif %}
+    </div>
 </nav>
