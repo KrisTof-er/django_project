@@ -47,6 +47,7 @@ LOCAL_APPS = [
     "apps.base",
     "apps.user_generator",
     "apps.contacts",
+    "apps.session_storage",
 ]
 
 THIRD_PARTY_APPS = []
