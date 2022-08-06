@@ -13,16 +13,12 @@ class ContactInlineAdmin(admin.TabularInline):
 
 @admin.register(ContactTag)
 class ContactTagAdmin(admin.ModelAdmin):
-    inlines = (
-        ContactInlineAdmin,
-    )
+    inlines = (ContactInlineAdmin,)
 
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
-    inlines = (
-        ContactDataInlineAdmin,
-    )
+    inlines = (ContactDataInlineAdmin,)
 
 
 @admin.register(ContactData)

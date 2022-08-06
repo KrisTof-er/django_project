@@ -16,4 +16,4 @@ class ContactDeleteView(DeleteView):
             messages.warning(request, f"Contact {contact_name} Deleted")
         else:
             messages.error(request, "Nothing deleted")
-        return redirect('contacts:show_contacts')
+        return redirect("contacts:show_contacts")

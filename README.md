@@ -1,6 +1,7 @@
 # User Generator
 
 ---
+![main-workflow](https://github.com/hillel-i-python-pro-i-2022-05-19/homework__sichkar_denis__django_project/actions/workflows/main-workflow.yml/badge.svg)
 
 ### Run
 
