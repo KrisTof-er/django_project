@@ -45,8 +45,10 @@ DJANGO_APPS = [
 
 LOCAL_APPS = [
     "apps.base",
+    "apps.users",
     "apps.user_generator",
     "apps.contacts",
+    "apps.session_storage",
 ]
 
 THIRD_PARTY_APPS = []
@@ -64,6 +66,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "core.urls"
+
+AUTH_USER_MODEL = "users.User"
+
+LOGIN_REDIRECT_URL = "index"
+LOGOUT_REDIRECT_URL = LOGIN_REDIRECT_URL
 
 TEMPLATES = [
     {

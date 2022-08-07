@@ -1,0 +1,31 @@
+<nav>
+    <div class="d-flex justify-content-center">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" href={% url "index" %}>Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href={% url "user_generator:index" %}>User Generator</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href={% url "session_storage:index" %}>Sessions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href={% url "contacts:show_contacts" %}>Contacts</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center">
+        {% if user.is_authenticated %}
+            <div>Hi {{ user.username }}!</div>
+            <div><a href="{% url 'logout' %}">Log Out</a></div>
+        {% else %}
+            <div>
+                <a href="{% url 'login' %}">Log In</a>
+                <span> or </span>
+                <a href="{% url 'users:signup' %}">Sign Up</a>
+            </div>
+        {% endif %}
+    </div>
+</nav>

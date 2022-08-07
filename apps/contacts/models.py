@@ -1,6 +1,7 @@
 import re
 
 from django import forms
+from django.conf import settings
 from django.db import models
 
 
@@ -59,6 +60,13 @@ class ContactTag(models.Model):
 class Contact(models.Model):
     contact_name = models.CharField("Contact name", help_text="Name of contact", max_length=50)
     birthday = models.DateField("Birthday", help_text="Date of birth", null=True, blank=True)
+
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+    )
 
     contact_tags = models.ManyToManyField(ContactTag, related_name="contact_tags", blank=True)
 

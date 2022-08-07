@@ -1,4 +1,4 @@
-django==4.0.6
+django==4.1
 
 # Environment variables
 django-environ==0.9.0
@@ -7,11 +7,8 @@ django-environ==0.9.0
 psycopg2-binary==2.9.3
 
 pre-commit==2.20.0
-
 pyupgrade==2.37.3
-
 black==22.6.0
-
 prospector[with_everything]==1.7.7
 
 faker==13.15.1

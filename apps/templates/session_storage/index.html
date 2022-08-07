@@ -1,0 +1,11 @@
+{% extends "_helpers/_base.html" %}
+
+{% block title %}
+    Session
+{% endblock %}
+
+{% block content %}
+    <p>Session: {{ session_id }}</p>
+    <p>Last visit: {{ session_datetime }}</p>
+    <p>Visited: {{ count_of_visits }}</p>
+{% endblock %}
