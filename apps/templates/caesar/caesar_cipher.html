@@ -1,0 +1,55 @@
+{% extends '_helpers/_base.html' %}
+
+{% block title %}
+    Caesar Cipher
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'caesar:index' %}" method="post">
+        {% csrf_token %}
+        <div class="form-error">{{ form_encrypt.non_field_errors }}</div>
+        <p>
+            <label class="form-label" for="{{ form_encrypt.text_to_encrypt.id_for_label }}">
+                {{ form_encrypt.text_to_encrypt.label }}:
+            </label>
+            {{ form_encrypt.text_to_encrypt }}
+        </p>
+        <p>
+            <label class="form-label" for="{{ form_encrypt.key_to_encrypt.id_for_label }}">
+                {{ form_encrypt.key_to_encrypt.label }}:
+            </label>
+            {{ form_encrypt.key_to_encrypt }}
+        </p>
+        <div class="form-error">
+            {{ form_encrypt.text_to_encrypt.errors }}
+        </div>
+        <button type="submit" name="encryptbtn" class="save btn btn-success">  {# "save btn btn-default" #}
+            Encrypt
+        </button>
+        <h3><strong>Result: <u>{{ encrypted_text }}</u></strong></h3>
+    </form>
+    <hr class="border border-primary opacity-50">
+    <form action="{% url 'caesar:index' %}" method="post">
+        {% csrf_token %}
+        <div class="form-error">{{ form_decrypt.non_field_errors }}</div>
+        <p>
+            <label class="form-label" for="{{ form_decrypt.text_to_decrypt.id_for_label }}">
+                {{ form_decrypt.text_to_decrypt.label }}:
+            </label>
+            {{ form_decrypt.text_to_decrypt }}
+        </p>
+        <p>
+            <label class="form-label" for="{{ form_decrypt.key_to_decrypt.id_for_label }}">
+                {{ form_decrypt.key_to_decrypt.label }}:
+            </label>
+            {{ form_decrypt.key_to_decrypt }}
+        </p>
+        <div class="form-error">
+            {{ form_decrypt.text_to_decrypt.errors }}
+        </div>
+        <button type="submit" name="decryptbtn" class="save btn btn-danger">  {# "save btn btn-default" #}
+            Decrypt
+        </button>
+        <h3><strong>Result: <u>{{ decrypted_text }}</u></strong></h3>
+    </form>
+{% endblock %}
