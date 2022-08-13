@@ -5,6 +5,9 @@ ALPHABET_CHARACTERS: Final[str] = string.ascii_lowercase
 
 
 def encryptor(input_text: str, key: int) -> str:
+    if key < 0:
+        raise ValueError
+
     ALPHABET_REPEATS: Final[int] = key // len(ALPHABET_CHARACTERS) + 2
     ALPHABET: Final[str] = ALPHABET_CHARACTERS * ALPHABET_REPEATS
 
@@ -20,6 +23,9 @@ def encryptor(input_text: str, key: int) -> str:
 
 
 def decryptor(input_text: str, key: int) -> str:
+    if key < 0:
+        raise ValueError
+
     ALPHABET_REPEATS: Final[int] = key // len(ALPHABET_CHARACTERS) + 2
     ALPHABET: Final[str] = ALPHABET_CHARACTERS * ALPHABET_REPEATS
 
