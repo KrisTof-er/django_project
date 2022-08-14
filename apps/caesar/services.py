@@ -4,9 +4,14 @@ from typing import Final
 ALPHABET_CHARACTERS: Final[str] = string.ascii_lowercase
 
 
+class NegativeValueError(Exception):
+    def __init__(self):
+        super().__init__("This value is less than 0")
+
+
 def encryptor(input_text: str, key: int) -> str:
     if key < 0:
-        raise ValueError
+        raise NegativeValueError
 
     ALPHABET_REPEATS: Final[int] = key // len(ALPHABET_CHARACTERS) + 2
     ALPHABET: Final[str] = ALPHABET_CHARACTERS * ALPHABET_REPEATS
@@ -24,7 +29,7 @@ def encryptor(input_text: str, key: int) -> str:
 
 def decryptor(input_text: str, key: int) -> str:
     if key < 0:
-        raise ValueError
+        raise NegativeValueError
 
     ALPHABET_REPEATS: Final[int] = key // len(ALPHABET_CHARACTERS) + 2
     ALPHABET: Final[str] = ALPHABET_CHARACTERS * ALPHABET_REPEATS
