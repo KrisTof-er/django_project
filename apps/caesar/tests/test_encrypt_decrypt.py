@@ -8,6 +8,12 @@ patterns = [
     ("De 0f", -3, "Ab 0c"),
 ]
 
+patterns = [
+    ("aaa", 2, "ccc"),
+    ("A/AA", 104, "A/AA"),
+    ("Ab c", 3, "De f"),
+]
+
 
 @pytest.mark.parametrize(
     "input_text,key,output_text",
