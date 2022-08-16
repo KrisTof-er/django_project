@@ -7,8 +7,8 @@ from apps.caesar.services import encryptor, decryptor, NegativeValueError
     "input_text,key,output_text",
     [
         ("aaa", 2, "ccc"),
-        ("AAA", 26, "aaa"),
-        ("Ab c", 3, "de f"),
+        ("A/AA", 26, "A/AA"),
+        ("Ab c", 3, "De f"),
     ],
 )
 def test_encryption_good(input_text: str, key: int, output_text: str):
@@ -19,8 +19,8 @@ def test_encryption_good(input_text: str, key: int, output_text: str):
     "input_text,key,output_text",
     [
         ("ccc", 2, "aaa"),
-        ("AAA", 26, "aaa"),
-        ("Ab c", 3, "xy z"),
+        ("AA,A", 26, "AA,A"),
+        ("Ab c", 3, "Xy z"),
     ],
 )
 def test_decryption_good(input_text: str, key: int, output_text: str):

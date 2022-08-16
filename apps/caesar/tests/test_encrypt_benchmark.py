@@ -8,8 +8,8 @@ from apps.caesar.services import encryptor
     "input_text,key,output_text",
     [
         ("aaa", 2, "ccc"),
-        ("AAA", 26, "aaa"),
-        ("Ab c", 3, "de f"),
+        ("AAA;", 26, "AAA;"),
+        ("Ab c", 3, "De f"),
     ],
 )
 def test_encryption_good_benchmark(input_text: str, key: int, output_text: str, benchmark: BenchmarkFixture):

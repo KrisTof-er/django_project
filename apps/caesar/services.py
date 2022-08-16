@@ -1,7 +1,8 @@
 import string
 from typing import Final
 
-ALPHABET_CHARACTERS: Final[str] = string.ascii_lowercase
+ALPHABET_LOWER: Final[str] = string.ascii_lowercase
+ALPHABET_UPPER: Final[str] = string.ascii_uppercase
 
 
 class NegativeValueError(Exception):
@@ -13,17 +14,17 @@ def encryptor(input_text: str, key: int) -> str:
     if key < 0:
         raise NegativeValueError
 
-    ALPHABET_REPEATS: Final[int] = key // len(ALPHABET_CHARACTERS) + 2
-    ALPHABET: Final[str] = ALPHABET_CHARACTERS * ALPHABET_REPEATS
-
-    input_text_lower = input_text.lower()
     encrypted_text = ""
-    for letter in input_text_lower:
-        index_in_alphabet = ALPHABET.find(letter)
+    for letter in input_text:
+        index_in_alphabet = ALPHABET_UPPER.find(letter)
         if index_in_alphabet == -1:
-            encrypted_text += " "
+            index_in_alphabet = ALPHABET_LOWER.find(letter)
+            if index_in_alphabet == -1:
+                encrypted_text += letter
+            else:
+                encrypted_text += ALPHABET_LOWER[index_in_alphabet + key % 26]
         else:
-            encrypted_text += ALPHABET[index_in_alphabet + key]
+            encrypted_text += ALPHABET_UPPER[index_in_alphabet + key % 26]
     return encrypted_text
 
 
@@ -31,15 +32,15 @@ def decryptor(input_text: str, key: int) -> str:
     if key < 0:
         raise NegativeValueError
 
-    ALPHABET_REPEATS: Final[int] = key // len(ALPHABET_CHARACTERS) + 2
-    ALPHABET: Final[str] = ALPHABET_CHARACTERS * ALPHABET_REPEATS
-
-    input_text_lower = input_text.lower()
-    decrypted_text = ""
-    for letter in input_text_lower:
-        index_in_alphabet = ALPHABET.find(letter)
+    encrypted_text = ""
+    for letter in input_text:
+        index_in_alphabet = ALPHABET_UPPER.find(letter)
         if index_in_alphabet == -1:
-            decrypted_text += " "
+            index_in_alphabet = ALPHABET_LOWER.find(letter)
+            if index_in_alphabet == -1:
+                encrypted_text += letter
+            else:
+                encrypted_text += ALPHABET_LOWER[index_in_alphabet - key % 26]
         else:
-            decrypted_text += ALPHABET[index_in_alphabet - key]
-    return decrypted_text
+            encrypted_text += ALPHABET_UPPER[index_in_alphabet - key % 26]
+    return encrypted_text
