@@ -2,7 +2,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
 from apps.caesar.forms import EncryptForm, DecryptForm
-from apps.caesar.services import encryptor, decryptor
+from apps.caesar.services import encryptor
 
 
 def encrypt_or_decrypt(request: HttpRequest) -> HttpResponse:
@@ -13,14 +13,18 @@ def encrypt_or_decrypt(request: HttpRequest) -> HttpResponse:
         form_decrypt = DecryptForm()
         if form_encrypt.is_valid():
             encrypted_text = encryptor(
-                input_text=form_encrypt.data["text_to_encrypt"], key=int(form_encrypt.data["key_to_encrypt"])
+                input_text=form_encrypt.data["text_to_encrypt"],
+                key=int(form_encrypt.data["key_to_encrypt"]),
+                encryption_method=True,
             )
     elif request.method == "POST" and "decryptbtn" in request.POST:
         form_encrypt = EncryptForm()
         form_decrypt = DecryptForm(request.POST)
         if form_decrypt.is_valid():
-            decrypted_text = decryptor(
-                input_text=form_decrypt.data["text_to_decrypt"], key=int(form_decrypt.data["key_to_decrypt"])
+            decrypted_text = encryptor(
+                input_text=form_decrypt.data["text_to_decrypt"],
+                key=int(form_decrypt.data["key_to_decrypt"]),
+                encryption_method=False,
             )
     else:
         form_encrypt = EncryptForm()
