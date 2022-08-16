@@ -14,6 +14,17 @@
         </li>
     </ul>
 
+    {% if contact.avatar %}
+        <ul class="list-group list-group-horizontal">
+            <li class="list-group-item">
+                Contact Avatar:
+            </li>
+            <li class="list-group-item">
+                <img class="contact-avatar" src="{{ contact.avatar.url }}" alt="{{ contact.contact_name }}">
+            </li>
+        </ul>
+    {% endif %}
+
     {% if contact.birthday %}
         <ul class="list-group list-group-horizontal">
             <li class="list-group-item">

@@ -1,6 +1,8 @@
 {% extends "_helpers/_base.html" %}
-{% block content %}
-    <p>Hello, what's up?</p>
-    <hr style="border-style: dotted">
+{% load static %}
 
+{% block content %}
+    <p class="greetings-text">Hello, what's up?</p>
+    <hr class="dotted-hr">
+    <img class="logo" src="{% static 'images/logo.svg' %}" alt="Python Logo">
 {% endblock %}
