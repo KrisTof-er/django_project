@@ -8,23 +8,23 @@ from apps.caesar.services import encryptor
 def encrypt_or_decrypt(request: HttpRequest) -> HttpResponse:
     encrypted_text = ""
     decrypted_text = ""
-    if request.method == "POST" and "encryptbtn" in request.POST:
+    if request.method == "POST" and "encrypt-btn" in request.POST:
         form_encrypt = EncryptForm(request.POST)
         form_decrypt = DecryptForm()
         if form_encrypt.is_valid():
             encrypted_text = encryptor(
                 input_text=form_encrypt.data["text_to_encrypt"],
                 key=int(form_encrypt.data["key_to_encrypt"]),
-                encryption_method=True,
+                is_encrypt=True,
             )
-    elif request.method == "POST" and "decryptbtn" in request.POST:
+    elif request.method == "POST" and "decrypt-btn" in request.POST:
         form_encrypt = EncryptForm()
         form_decrypt = DecryptForm(request.POST)
         if form_decrypt.is_valid():
             decrypted_text = encryptor(
                 input_text=form_decrypt.data["text_to_decrypt"],
                 key=int(form_decrypt.data["key_to_decrypt"]),
-                encryption_method=False,
+                is_encrypt=False,
             )
     else:
         form_encrypt = EncryptForm()

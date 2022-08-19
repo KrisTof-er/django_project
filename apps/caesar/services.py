@@ -3,6 +3,8 @@ from typing import Final
 
 ALPHABET_LOWER: Final[str] = string.ascii_lowercase
 ALPHABET_UPPER: Final[str] = string.ascii_uppercase
+ALPHABET_LENGTH: Final[int] = len(ALPHABET_UPPER)
+NOT_FOUND_CHARACTER_IDENTIFIER: Final[int] = ALPHABET_LOWER.find(f"{ALPHABET_UPPER} ")
 
 
 class NullValueError(Exception):
@@ -10,11 +12,11 @@ class NullValueError(Exception):
         super().__init__("Encryption operations with key=0 are useless")
 
 
-def encryptor(input_text: str, key: int, encryption_method: bool) -> str:
+def encryptor(input_text: str, key: int, is_encrypt: bool = True) -> str:
     if key == 0:
         raise NullValueError
 
-    encryption_way = encryption_method and key > 0 or not encryption_method and key < 0
+    is_encrypt = is_encrypt and key > 0 or not is_encrypt and key < 0
 
     if key < 0:
         key *= -1
@@ -22,18 +24,18 @@ def encryptor(input_text: str, key: int, encryption_method: bool) -> str:
     encrypted_text = ""
     for letter in input_text:
         index_in_alphabet = ALPHABET_UPPER.find(letter)
-        if index_in_alphabet == -1:
+        if index_in_alphabet == NOT_FOUND_CHARACTER_IDENTIFIER:
             index_in_alphabet = ALPHABET_LOWER.find(letter)
-            if index_in_alphabet == -1:
+            if index_in_alphabet == NOT_FOUND_CHARACTER_IDENTIFIER:
                 encrypted_text += letter
             else:
-                if encryption_way:
-                    encrypted_text += ALPHABET_LOWER[index_in_alphabet + key % 26]
+                if is_encrypt:
+                    encrypted_text += ALPHABET_LOWER[(index_in_alphabet + key) % ALPHABET_LENGTH]
                 else:
-                    encrypted_text += ALPHABET_LOWER[index_in_alphabet - key % 26]
+                    encrypted_text += ALPHABET_LOWER[(index_in_alphabet - key) % ALPHABET_LENGTH]
         else:
-            if encryption_way:
-                encrypted_text += ALPHABET_UPPER[index_in_alphabet + key % 26]
+            if is_encrypt:
+                encrypted_text += ALPHABET_UPPER[(index_in_alphabet + key) % ALPHABET_LENGTH]
             else:
-                encrypted_text += ALPHABET_UPPER[index_in_alphabet - key % 26]
+                encrypted_text += ALPHABET_UPPER[(index_in_alphabet - key) % ALPHABET_LENGTH]
     return encrypted_text
