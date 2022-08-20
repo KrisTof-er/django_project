@@ -3,8 +3,8 @@ import pytest
 from apps.caesar.services import encryptor, NullValueError
 
 patterns = [
-    ("ccc", -2, "aaa"),
-    ("A/AA", -104, "A/AA"),
+    ("AbCdEf", 1, "BcDeFg"),
+    ("Python_Django5+5=10?;", 255, "Ktocji_Yevibj5+5=10?;"),
     ("De 0f", -3, "Ab 0c"),
     ("HellO, 573 Worlds!", -104, "HellO, 573 Worlds!"),
 ]

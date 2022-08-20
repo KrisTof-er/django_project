@@ -1,10 +1,15 @@
 import string
 from typing import Final
 
-ALPHABET_LOWER: Final[str] = string.ascii_lowercase
-ALPHABET_UPPER: Final[str] = string.ascii_uppercase
-ALPHABET_LENGTH: Final[int] = len(ALPHABET_UPPER)
-NOT_FOUND_CHARACTER_IDENTIFIER: Final[int] = ALPHABET_LOWER.find(f"{ALPHABET_UPPER} ")
+# ALPHABET: Final[str] = string.ascii_lowercase
+# ALPHABET_UPPER: Final[str] = string.ascii_uppercase
+# ALPHABET_LENGTH: Final[int] = len(ALPHABET_UPPER)
+# NOT_FOUND_CHARACTER_IDENTIFIER: Final[int] = ALPHABET.find(f"{ALPHABET_UPPER} ")
+
+ALPHABET: Final[str] = string.ascii_lowercase
+ALPHABET_UPPER: Final[str] = ALPHABET.upper()
+ALPHABET_LENGTH: Final[int] = len(ALPHABET)
+NOT_FOUND_CHARACTER_IDENTIFIER: Final[int] = -1
 
 
 class NullValueError(Exception):
@@ -25,14 +30,14 @@ def encryptor(input_text: str, key: int, is_encrypt: bool = True) -> str:
     for letter in input_text:
         index_in_alphabet = ALPHABET_UPPER.find(letter)
         if index_in_alphabet == NOT_FOUND_CHARACTER_IDENTIFIER:
-            index_in_alphabet = ALPHABET_LOWER.find(letter)
+            index_in_alphabet = ALPHABET.find(letter)
             if index_in_alphabet == NOT_FOUND_CHARACTER_IDENTIFIER:
                 encrypted_text += letter
             else:
                 if is_encrypt:
-                    encrypted_text += ALPHABET_LOWER[(index_in_alphabet + key) % ALPHABET_LENGTH]
+                    encrypted_text += ALPHABET[(index_in_alphabet + key) % ALPHABET_LENGTH]
                 else:
-                    encrypted_text += ALPHABET_LOWER[(index_in_alphabet - key) % ALPHABET_LENGTH]
+                    encrypted_text += ALPHABET[(index_in_alphabet - key) % ALPHABET_LENGTH]
         else:
             if is_encrypt:
                 encrypted_text += ALPHABET_UPPER[(index_in_alphabet + key) % ALPHABET_LENGTH]
