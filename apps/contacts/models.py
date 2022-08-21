@@ -60,7 +60,7 @@ class ContactTag(models.Model):
 
 def get_icon_path(instance, filename: str) -> str:
     _, extension = filename.rsplit(".", maxsplit=1)
-    return f"humans/avatars/{instance.pk}/{uuid.uuid4()}/avatar.{extension}"
+    return f"contacts/avatars/{instance.pk}/{uuid.uuid4()}/avatar.{extension}"
 
 
 class Contact(models.Model):

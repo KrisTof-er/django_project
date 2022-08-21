@@ -11,7 +11,11 @@ pyupgrade==2.37.3
 black==22.6.0
 prospector[with_everything]==1.7.7
 
-faker==14.0.0
+faker==14.1.0
 
 # Images
 pillow==9.2.0
+
+# Forms
+django-crispy-forms==1.14.0
+crispy-bootstrap5==0.6.0

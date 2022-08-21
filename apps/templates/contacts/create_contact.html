@@ -1,4 +1,5 @@
 {% extends '_helpers/_base.html' %}
+{% load crispy_forms_tags %}
 
 {% block title %}
     Contact Creation
@@ -7,12 +8,15 @@
 {% block content %}
     <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
+{#        {{ form.as_p }}#}
+        {% crispy form %}
         <button type="submit" class="btn btn-success">
             {% block label %}
                 Create New Contact
             {% endblock %}
         </button>
+{#        {% block button %}#}
+{#        {% endblock %}#}
     </form>
     <a href="{% url 'contacts:show_contacts' %}">
         <button class="btn btn-info">
