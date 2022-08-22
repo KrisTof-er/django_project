@@ -1,0 +1,27 @@
+{% extends '_helpers/_base.html' %}
+
+{% block title %}
+    Caesar Cipher
+{% endblock %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form_encrypt.as_p }}
+        <button type="submit" name="encrypt-btn" class="save btn btn-success">
+            Encrypt
+        </button>
+        <h3><strong>Result: <u>{{ encrypted_text }}</u></strong></h3>
+    </form>
+
+    <hr class="border border-primary opacity-50">
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form_decrypt.as_p }}
+        <button type="submit" name="decrypt-btn" class="save btn btn-danger">
+            Decrypt
+        </button>
+        <h3><strong>Result: <u>{{ decrypted_text }}</u></strong></h3>
+    </form>
+{% endblock %}
