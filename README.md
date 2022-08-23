@@ -25,3 +25,19 @@ Example:
 ```
 localhost:8000/user-generator/55
 ```
+---
+
+### Tests
+
+_To run tests, **write**_
+```
+pytest
+```
+_You can add arguments **"-v, --verbose"** to increase verbosity._
+
+Example:
+
+```
+pytest -v
+```
+---

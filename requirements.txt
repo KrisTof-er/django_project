@@ -16,6 +16,10 @@ faker==14.1.0
 # Images
 pillow==9.2.0
 
+# Tests
+pytest==7.1.2
+pytest-benchmark==3.4.1
+
 # Forms
 django-crispy-forms==1.14.0
 crispy-bootstrap5==0.6.0
