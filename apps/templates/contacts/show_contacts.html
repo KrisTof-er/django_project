@@ -1,7 +1,12 @@
 {% extends '_helpers/_base.html' %}
+{% load static %}
 
 {% block title %}
-    Contacts List
+    Contact List
+{% endblock %}
+
+{% block favicon-href %}
+    {% static "images/contact-book.png"%}
 {% endblock %}
 
 {% block content %}

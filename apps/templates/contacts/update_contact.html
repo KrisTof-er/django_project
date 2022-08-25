@@ -1,14 +1,14 @@
 {% extends 'contacts/create_contact.html' %}
+{% load static %}
 
 {% block title %}
     {{ contact.contact_name }} Updating
 {% endblock %}
 
-{#{% block button %}#}
-{#    <button type="submit" class="btn btn-success">#}
-{#        Update Contact#}
-{#    </button>#}
-{#{% endblock %}#}
+{% block favicon-href %}
+    {% static "images/contact-edit.png" %}
+{% endblock %}
+
 {% block label %}
     Update Contact
 {% endblock %}

@@ -1,5 +1,9 @@
+body {
+    background-color: honeydew;
+}
+
 .greetings-text {
-    text-shadow: 0 1px 1px aqua;
+    text-shadow: 0 1px 1px royalblue;
 }
 
 p.greetings-text {
@@ -10,11 +14,19 @@ p.greetings-text {
     max-width: 3em;
 }
 
-.logo {
-    width: 10em;
-    max-width: 10em;
+.main-page-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15em;
+    max-width: 25em;
 }
 
 .dotted-hr {
-    border-style: dotted;
+    border: 0.2em dashed gray;
+}
+
+.username {
+    color: orangered;
+    text-shadow: 0 1px 5px red;
 }

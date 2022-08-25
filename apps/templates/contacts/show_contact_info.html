@@ -1,7 +1,12 @@
 {% extends '_helpers/_base.html' %}
+{% load static %}
 
 {% block title %}
     {{ contact.contact_name }}
+{% endblock %}
+
+{% block favicon-href %}
+    {% static "images/contact-card.png"%}
 {% endblock %}
 
 {% block content %}

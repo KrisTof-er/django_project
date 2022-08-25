@@ -19,10 +19,10 @@
         </ul>
     </div>
 
-    <div class="d-flex justify-content-center align-items-center">
+    <div class="d-flex flex-column justify-content-center align-items-center">
         {% if user.is_authenticated %}
-            <div>Hi {{ user.username }}!</div>
-            <div><a href="{% url 'logout' %}">Log Out</a></div>
+            <div class="username">Hi {{ user.username }}!</div>
+            <div style="display: block"><a href="{% url 'logout' %}">Log Out</a></div>
         {% else %}
             <div>
                 <a href="{% url 'login' %}">Log In</a>
