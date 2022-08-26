@@ -73,9 +73,15 @@
     </ul>
 
 
-    <a href="{% url 'contacts:show_contacts' %}">
-        <button class="btn btn-info">
+    <div class="btn-group" role="group">
+        <a href="{% url 'contacts:show_contacts' %}" class="btn btn-info">
             Show All Contacts
-        </button>
-    </a>
+        </a>
+        <a href="{% url 'contacts:update_contact' pk=contact.pk %}" class="btn btn-primary">
+            Update Contact
+        </a>
+        <a href="{% url 'contacts:delete_contact' pk=contact.pk %}" class="btn btn-danger">
+            Delete Contact
+        </a>
+    </div>
 {% endblock %}
