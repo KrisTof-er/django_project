@@ -7,6 +7,7 @@ from apps.contacts.models import Contact
 class ContactDeleteView(DeleteView):
     queryset = Contact.objects.all()
     success_url = reverse_lazy("contacts:show_contacts")
+    template_name = "contacts/confirm_delete_contact.html"
 
     # def get(self, request, *args, **kwargs):
     #     pk = kwargs["pk"]
