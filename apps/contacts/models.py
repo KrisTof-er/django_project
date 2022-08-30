@@ -1,4 +1,5 @@
 import re
+import uuid
 
 from django import forms
 from django.conf import settings
@@ -57,9 +58,22 @@ class ContactTag(models.Model):
     __repr__ = __str__
 
 
+def get_icon_path(instance, filename: str) -> str:
+    _, extension = filename.rsplit(".", maxsplit=1)
+    return f"contacts/avatars/{instance.pk}/{uuid.uuid4()}/avatar.{extension}"
+
+
 class Contact(models.Model):
     contact_name = models.CharField("Contact name", help_text="Name of contact", max_length=50)
     birthday = models.DateField("Birthday", help_text="Date of birth", null=True, blank=True)
+
+    avatar = models.ImageField(
+        "Avatar",
+        upload_to=get_icon_path,
+        max_length=255,
+        blank=True,
+        null=True,
+    )
 
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,

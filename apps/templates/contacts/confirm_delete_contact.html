@@ -1,0 +1,38 @@
+{% extends "contacts/show_contacts.html" %}
+{% load static %}
+
+{% block favicon-href %}
+    {% static "images/contact-delete.html" %}
+{% endblock %}
+
+{% block content %}
+    <div class="text-center container mt-5" style="width: 30em;">
+        <div class="card p-3 border-dark">
+            <h6 class="modal-title">
+                <i class="fas fa-trash-alt"></i>&nbsp;&nbsp; Delete Candidate
+            </h6>
+            <hr>
+            <div class="text-danger"><i class="far fa-times-circle fa-5x mb-4 mt-2"></i></div>
+            <div class="text-danger">
+                <span><strong>DO YOU WANT TO DELETE THIS CONTACT?</strong></span>
+                <div class="text-dark mt-3 mb-2">
+                    Contact:
+                    <strong>
+{#                        {% if contact.avatar %}{{ contact.avatar }}{% endif %}#}
+                        {{ contact.contact_name }}
+                    </strong>
+                </div>
+            </div>
+            <hr>
+            <form method="post">
+                {% csrf_token %}
+                <input type="submit" value="Delete" class="btn btn-danger btn-sm ms-2">
+                <a href="{% url 'contacts:show_contacts' %}" class="btn btn-outline-secondary btn-sm">
+                    Cancel
+                </a>
+            </form>
+        </div>
+        <br>
+        <span class="text-danger">If you proceed, this data will become unrecoverable.</span>
+    </div>
+{% endblock %}

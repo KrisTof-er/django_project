@@ -51,7 +51,7 @@ LOCAL_APPS = [
     "apps.session_storage",
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = ["crispy_forms", "crispy_bootstrap5"]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
@@ -136,6 +136,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = "static/"
+
+STATICFILES_MAIN_DIR = APPS_DIR.joinpath("static")
+
+STATICFILES_DIRS = [
+    STATICFILES_MAIN_DIR,
+]
+
+MEDIA_URL = "media/"
+MEDIA_ROOT = BASE_DIR.joinpath("media")
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

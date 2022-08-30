@@ -1,7 +1,12 @@
 {% extends 'contacts/create_contact.html' %}
+{% load static %}
 
 {% block title %}
     {{ contact.contact_name }} Updating
+{% endblock %}
+
+{% block favicon-href %}
+    {% static "images/contact-edit.png" %}
 {% endblock %}
 
 {% block label %}
