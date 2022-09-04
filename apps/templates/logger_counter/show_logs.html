@@ -1,0 +1,23 @@
+{% extends "_helpers/_base.html" %}
+{% load static %}
+
+{% block title %}
+    Request List
+{% endblock %}
+
+{% block favicon-href %}
+    {% static "images/enter.png" %}
+{% endblock %}
+
+{% block content %}
+    <ol class="list-group list-group-numbered">
+        {% for log in logs %}
+            <li class="list-group-item" style="background: azure">
+                <span><b>User</b> = {{ log.user }}</span>
+                <span style="display: block;"><b>Path</b> = {{ log.path }}</span>
+                <span style="display: block;"><b>Count</b> = {{ log.count }}</span>
+                <span><b>Last visit</b>: {{ log.last_visit }}</span>
+            </li>
+        {% endfor %}
+    </ol>
+{% endblock %}
