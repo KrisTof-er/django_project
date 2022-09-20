@@ -26,6 +26,7 @@ urlpatterns = [
     path("sessions/", include("apps.session_storage.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
     path("users/", include("apps.users.urls")),
+    path("logger/", include("apps.middleware_logger.urls")),
     path("admin/", admin.site.urls),
 ]
 
