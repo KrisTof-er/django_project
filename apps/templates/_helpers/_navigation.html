@@ -1,22 +1,29 @@
 <nav>
-    <div class="d-flex justify-content-center">
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link" href={% url "index" %}>Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href={% url "user_generator:index" %}>User Generator</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href={% url "caesar:index" %}>Caesar</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href={% url "session_storage:index" %}>Sessions</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href={% url "contacts:show_contacts" %}>Contacts</a>
-            </li>
-        </ul>
+    <div>
+        <nav>
+            <div class="burger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href={% url "index" %}>Home</a>
+                </li>
+                <li>
+                    <a href={% url "user_generator:index" %}>User Generator</a>
+                </li>
+                <li>
+                    <a href={% url "caesar:index" %}>Caesar</a>
+                </li>
+                <li>
+                    <a href={% url "session_storage:index" %}>Sessions</a>
+                </li>
+                <li>
+                    <a href={% url "contacts:show_contacts" %}>Contacts</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 
     <div class="d-flex flex-column justify-content-center align-items-center">

@@ -1,17 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background-color: honeydew;
-}
-
-.greetings-text {
-    text-shadow: 0 1px 1px royalblue;
-}
-
-p.greetings-text {
-    color: green;
-}
-
-.contact-avatar {
-    max-width: 3em;
+    font-family: sans-serif;
 }
 
 .main-page-logo {
@@ -22,11 +17,88 @@ p.greetings-text {
     max-width: 25em;
 }
 
-.dotted-hr {
-    border: 0.2em dashed gray;
+nav {
+    height: 5vh;
+    background-color: crimson;
+}
+
+.nav-links {
+    display: flex;
+    width: 65%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.nav-links li {
+    list-style: none;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #fff;
+    transition: all .5s ease;
+}
+
+.nav-links li a:hover {
+    text-decoration: none;
+    color: #000;
+}
+
+.landing {
+    height: 90vh;
+    margin: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+    .line {
+        width: 30px;
+        height: 2px;
+        background-color: #fff;
+        margin: 5px 0;
+    }
+
+    nav {
+        position: relative;
+    }
+
+    .burger {
+        position: absolute;
+        top: 50%;
+        right: 5%;
+        cursor: pointer;
+        transform: translate(-5%, -50%);
+        z-index: 2;
+    }
+
+    .nav-links {
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        background-color: crimson;
+        flex-direction: column;
+        clip-path: circle(100px at 90% -20%);
+        -webkit-clip-path: circle(100px at 90% -20%);
+        transition: all 1s;
+    }
+    .nav-links li a {
+        font-size: 26px;
+        text-transform: uppercase;
+    }
+
+    .nav-links.open {
+        clip-path: circle(1250px at 90% -20%);
+        -webkit-clip-path: circle(1250px at 90% -20%);
+    }
 }
 
 .username {
     color: orangered;
     text-shadow: 0 1px 5px red;
+}
+
+.contact-avatar {
+    max-width: 3em;
 }
