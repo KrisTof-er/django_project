@@ -1,25 +1,25 @@
-django==4.1
+django==4.1.5
 
 # Environment variables
 django-environ==0.9.0
 
 # Postgres
-psycopg2-binary==2.9.3
+psycopg2-binary==2.9.5
 
-pre-commit==2.20.0
-pyupgrade==2.37.3
-black==22.6.0
-prospector[with_everything]==1.7.7
+pre-commit==2.21.0
+pyupgrade==3.3.1
+black==22.12.0
+prospector[with_everything]==1.8.4
 
-faker==14.1.0
+faker==16.4.0
 
 # Images
-pillow==9.2.0
+pillow==9.4.0
 
 # Tests
-pytest==7.1.2
-pytest-benchmark==3.4.1
+pytest==7.2.1
+pytest-benchmark==4.0.0
 
 # Forms
 django-crispy-forms==1.14.0
-crispy-bootstrap5==0.6.0
+crispy-bootstrap5==0.7.0
